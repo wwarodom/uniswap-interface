@@ -30,6 +30,7 @@ import { PositionPage } from './Pool/PositionPage'
 import AddLiquidity from './AddLiquidity'
 import { ThemedBackground } from '../theme'
 import ApeModeQueryParamReader from 'hooks/useApeModeQueryParamReader'
+import CreateProposal from './CreateProposal'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -129,6 +130,8 @@ export default function App() {
 
                 <Route exact strict path="/migrate/v2" component={MigrateV2} />
                 <Route exact strict path="/migrate/v2/:address" component={MigrateV2Pair} />
+
+                <Route exact strict path="/proposal" component={CreateProposal} />
 
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>

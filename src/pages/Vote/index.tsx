@@ -3,7 +3,7 @@ import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components/macro'
 import { UNI } from '../../constants/tokens'
 import { ExternalLink, TYPE } from '../../theme'
-import { RowBetween, RowFixed } from '../../components/Row'
+import { AutoRow, RowBetween, RowFixed } from '../../components/Row'
 import { Link } from 'react-router-dom'
 import { getExplorerLink, ExplorerDataType } from '../../utils/getExplorerLink'
 import { ProposalStatus } from './styled'
@@ -133,6 +133,10 @@ export default function Vote() {
     uniBalance && JSBI.notEqual(uniBalance.quotient, JSBI.BigInt(0)) && userDelegatee === ZERO_ADDRESS
   )
 
+  const showCreateProposal = Boolean(
+    availableVotes && JSBI.greaterThanOrEqual(availableVotes.quotient, JSBI.BigInt(10000000))
+  )
+
   return (
     <PageWrapper gap="lg" justify="center">
       <DelegateModal
@@ -172,29 +176,47 @@ export default function Vote() {
         <WrapSmall>
           <TYPE.mediumHeader style={{ margin: '0.5rem 0.5rem 0.5rem 0', flexShrink: 0 }}>Proposals</TYPE.mediumHeader>
           {(!allProposals || allProposals.length === 0) && !availableVotes && <Loader />}
-          {showUnlockVoting ? (
-            <ButtonPrimary
-              style={{ width: 'fit-content' }}
-              padding="8px"
-              borderRadius="8px"
-              onClick={toggleDelegateModal}
-            >
-              Unlock Voting
-            </ButtonPrimary>
-          ) : availableVotes && JSBI.notEqual(JSBI.BigInt(0), availableVotes?.quotient) ? (
-            <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
-            </TYPE.body>
-          ) : uniBalance &&
-            userDelegatee &&
-            userDelegatee !== ZERO_ADDRESS &&
-            JSBI.notEqual(JSBI.BigInt(0), uniBalance?.quotient) ? (
-            <TYPE.body fontWeight={500} mr="6px">
-              <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
-            </TYPE.body>
-          ) : (
-            ''
-          )}
+          <AutoRow gap="6px" justify="flex-end">
+            {showUnlockVoting ? (
+              <ButtonPrimary
+                style={{ width: 'fit-content' }}
+                padding="8px"
+                borderRadius="8px"
+                onClick={toggleDelegateModal}
+              >
+                Unlock Voting
+              </ButtonPrimary>
+            ) : availableVotes && JSBI.notEqual(JSBI.BigInt(0), availableVotes?.quotient) ? (
+              <TYPE.body fontWeight={500} mr="6px">
+                <FormattedCurrencyAmount currencyAmount={availableVotes} /> Votes
+              </TYPE.body>
+            ) : uniBalance &&
+              userDelegatee &&
+              userDelegatee !== ZERO_ADDRESS &&
+              JSBI.notEqual(JSBI.BigInt(0), uniBalance?.quotient) ? (
+              <TYPE.body fontWeight={500} mr="6px">
+                <FormattedCurrencyAmount currencyAmount={uniBalance} /> Votes
+              </TYPE.body>
+            ) : (
+              ''
+            )}
+            {
+              // TODO: Remove ! after testing
+              !showCreateProposal ? (
+                <ButtonPrimary
+                  as={Link}
+                  to="/proposal"
+                  style={{ width: 'fit-content' }}
+                  padding="8px"
+                  borderRadius="8px"
+                >
+                  Create Proposal
+                </ButtonPrimary>
+              ) : (
+                ''
+              )
+            }
+          </AutoRow>
         </WrapSmall>
         {!showUnlockVoting && (
           <RowBetween>
