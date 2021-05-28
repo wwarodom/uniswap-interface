@@ -179,9 +179,8 @@ export default function Vote() {
           <AutoRow gap="6px" justify="flex-end">
             {showUnlockVoting ? (
               <ButtonPrimary
-                style={{ width: 'fit-content' }}
+                style={{ width: 'fit-content', borderRadius: '8px' }}
                 padding="8px"
-                borderRadius="8px"
                 onClick={toggleDelegateModal}
               >
                 Unlock Voting
@@ -200,22 +199,18 @@ export default function Vote() {
             ) : (
               ''
             )}
-            {
-              // TODO: Remove ! after testing
-              !showCreateProposal ? (
-                <ButtonPrimary
-                  as={Link}
-                  to="/proposal"
-                  style={{ width: 'fit-content' }}
-                  padding="8px"
-                  borderRadius="8px"
-                >
-                  Create Proposal
-                </ButtonPrimary>
-              ) : (
-                ''
-              )
-            }
+            {showCreateProposal ? (
+              <ButtonPrimary
+                as={Link}
+                to="/proposal"
+                style={{ width: 'fit-content', borderRadius: '8px' }}
+                padding="8px"
+              >
+                Create Proposal
+              </ButtonPrimary>
+            ) : (
+              ''
+            )}
           </AutoRow>
         </WrapSmall>
         {!showUnlockVoting && (
