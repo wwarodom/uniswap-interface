@@ -1,6 +1,7 @@
 import { Token } from '@uniswap/sdk-core'
 import { UNI_ADDRESS } from './addresses'
 
+export const PSU = new Token(42, '0xe4BD72fC5498d94fD5c364015696653DeF6e8F61', 18, 'PSU', 'PSU Coin')
 export const AMPL = new Token(1, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const DAI = new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(1, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')

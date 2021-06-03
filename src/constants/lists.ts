@@ -1,5 +1,6 @@
 // used to mark unsupported tokens, these are hosted lists of unsupported tokens
 
+const PSU_LIST = 'https://gateway.pinata.cloud/ipfs/QmdQuTa1RQQtF98Yozt2D3h5LLLyRfLjTk2sARtEMpRJbp/psu.tokenlist.json'
 const COMPOUND_LIST = 'https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json'
 const UMA_LIST = 'https://umaproject.org/uma.tokenlist.json'
 const AAVE_LIST = 'tokenlist.aave.eth'
@@ -19,6 +20,7 @@ export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
+  PSU_LIST,
   COMPOUND_LIST,
   AAVE_LIST,
   SYNTHETIX_LIST,
@@ -36,4 +38,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [GEMINI_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [PSU_LIST, GEMINI_LIST]

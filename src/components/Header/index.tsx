@@ -359,8 +359,14 @@ export default function Header() {
         <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
           <Trans>Vote</Trans>
         </StyledNavLink>
-        <StyledExternalLink id={`stake-nav-link`} href={'https://info.uniswap.org'}>
+        {/* <StyledExternalLink id={`stake-nav-link`} href={'https://info.uniswap.org'}>
           <Trans>Charts</Trans>
+        </StyledExternalLink> */}
+        <StyledExternalLink id={`stake-nav-link`} href={'https://arbitrage-dex.netlify.app/'}>
+          <Trans>Arbitrage</Trans>
+        </StyledExternalLink>
+        <StyledExternalLink id={`stake-nav-link`} href={'https://coin.werapun.com/'}>
+          <Trans>PSUCoin</Trans>
           <sup>↗</sup>
         </StyledExternalLink>
       </HeaderLinks>
